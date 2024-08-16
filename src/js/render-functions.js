@@ -1,4 +1,4 @@
-export function renderPhoto() {
+export function renderPhoto(photo) {
   return `<li class="photo">
   <div class="photo-card">
     <a class="image-link" data-lightbox="image" href="${largeImageURL}">

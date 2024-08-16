@@ -4,7 +4,7 @@ import { renderPhoto } from './render-functions.js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-export function fetchAPI() {
+function fetchAPI(url) {
   return fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -13,7 +13,6 @@ export function fetchAPI() {
       return response.json();
     })
     .then(data => {
-      return data;
       renderPhoto(data);
     })
     .then(data => {

@@ -1,6 +1,9 @@
+import { renderPhoto } from './js/render-functions.js';
+import fetchAPI from './js/pixabay-api.js';
+
 const input = document.querySelector('.input-name');
 const btn = document.querySelector('.search-btn');
-import fetchAPI from './js/pixabay-ipi';
+const gallery = document.querySelector('.gallery');
 
 btn.addEventListener('click', event => {
   event.preventDefault();
@@ -16,6 +19,11 @@ btn.addEventListener('click', event => {
   });
   const url = `${BASE_URL}${END_URL}?${PARAMS}`;
 
-  fetchAPI();
-  console.log(data);
+  fetchAPI().then(data => {
+    gallery.innerHTML = '';
+    data.hits.forEach(photo => {
+      const markup = renderPhoto(photo);
+      gallery.insertAdjacentHTML('beforeend', markup);
+    });
+  });
 });
